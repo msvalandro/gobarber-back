@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import AppError from '@shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
@@ -21,9 +22,7 @@ class ShowProfileService {
       throw new AppError('User not found.');
     }
 
-    delete user.password;
-
-    return user;
+    return classToClass(user);
   }
 }
 
