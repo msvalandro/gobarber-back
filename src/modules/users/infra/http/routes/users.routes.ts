@@ -3,7 +3,6 @@ import multer from 'multer';
 import { celebrate, Segments, Joi } from 'celebrate';
 
 import uploadConfig from '@config/upload';
-import { string } from '@hapi/joi';
 import ensureAuthenticated from '../middleware/ensureAuthenticated';
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
@@ -17,7 +16,7 @@ usersRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
-      name: string().required(),
+      name: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required(),
     },
